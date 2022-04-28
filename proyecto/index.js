@@ -19,7 +19,10 @@ app.post("/usuarios",function(peticion,respuesta){
 
 app.post("/datos-json",function(peticion,respuesta){
     const user = peticion.body
-    respuesta.send("Hola: "+user.nombre)
+    respuesta.json({
+        saludo:"Hola "+user.nombre,
+        direccion:user.ciudad
+    })
 })
 
 app.put("/",function(peticion,respuesta){
