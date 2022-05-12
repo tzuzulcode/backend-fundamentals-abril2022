@@ -19,8 +19,12 @@
         // Asíncrona
         // Async
         fetch("/users") // Inicio
-        .then()//Resultado exitoso
-        .catch()//Resultado fallido
+        .then(function(resultado){
+            console.log(resultado)
+        })//Resultado exitoso
+        .catch(function(error){
+            console.log(error)
+        })//Resultado fallido
 
     </script>
 </body>
