@@ -8,6 +8,27 @@ const connection = mysql.createConnection({
     database: 'OrganizerApp'
 }) //function
 
+
+function query(sql){
+    const miPromesa = new Promise(function (resolve,reject){
+        database.connection.query(sql,function(error,result,fields){
+            if(error!=null){
+                console.log(error)
+    
+                return reject({
+                    error:true,
+                    message:error.sqlMessage
+                })
+            }else{
+                return resolve(result)
+            }
+        })
+    })
+
+    return miPromesa
+    
+}
+
 // function myCreateConnection(objeto){
 //     //procesar objeto
 
@@ -23,5 +44,6 @@ const connection = mysql.createConnection({
 // }
 
 module.exports = {
-    connection
+    connection,
+    query
 }

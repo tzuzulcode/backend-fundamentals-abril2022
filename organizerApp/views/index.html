@@ -20,11 +20,29 @@
         // Async
         fetch("/users") // Inicio
         .then(function(resultado){
-            console.log(resultado)
+            return resultado.json()
         })//Resultado exitoso
+        .then(function(data){
+            console.log(data)
+        })
         .catch(function(error){
             console.log(error)
         })//Resultado fallido
+
+
+        // Gestión de promesas con Async/await
+        async function request(){
+            try{
+                const resultado = await fetch("/users")
+                const data = await resultado.json()
+                return data
+            }catch(error){
+                console.log(error)
+            }
+        }
+
+        request()
+
 
     </script>
 </body>
