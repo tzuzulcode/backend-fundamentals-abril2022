@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
 
 function query(sql){
     const miPromesa = new Promise(function (resolve,reject){
-        database.connection.query(sql,function(error,result,fields){
+        connection.query(sql,function(error,result,fields){
             if(error!=null){
                 console.log(error)
     
