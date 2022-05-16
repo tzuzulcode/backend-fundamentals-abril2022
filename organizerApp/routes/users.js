@@ -30,12 +30,18 @@ router.get("/registro",function(req,res){
 
 router.post("/registro",function(req,res){
     const body = req.body
+    console.log(body)
+    console.log(Object.keys(body))
+    console.log(Object.values(body))
+    
+    database.connection.query(
+        "INSERT INTO users(??) VALUES(?)",
+        [Object.keys(body),Object.values(body)]
+    )
     // Hacer una query para registrar un usuario
     // Investigar como hacer un INSERT INTO en mysql2
-    return res.json(user)
+    return res.json({message:"SUCCESS"})
 })
-
-// métodos de HTTP: Investigar
 
 
 module.exports = router // Exportando

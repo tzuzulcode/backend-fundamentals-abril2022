@@ -13,7 +13,7 @@ const app = express()
 
 //Sección para los middleware
 app.use("/static",express.static(path.join(__dirname,"static"))) //Middleware para archivos estaticos
-
+app.use(express.json())
 
 // Sección de codigo para los router
 app.use(users) // Usando un router
