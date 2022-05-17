@@ -9,9 +9,9 @@ const connection = mysql.createConnection({
 }) //function
 
 
-function query(sql){
+function query(sql,data){
     const miPromesa = new Promise(function (resolve,reject){
-        connection.query(sql,function(error,result,fields){
+        connection.query(sql,data,function(error,result,fields){
             if(error!=null){
                 console.log(error)
     
