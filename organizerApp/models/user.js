@@ -44,7 +44,13 @@ class User{
                 [Object.keys(data),Object.values(data)]
             )
 
-            return result
+            delete data.password
+
+            return {
+                user:data,
+                success:true,
+                message:"Usuario registrado correctamente"
+            }
 
         }catch(error){
             return error

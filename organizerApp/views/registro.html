@@ -7,16 +7,59 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
-        <input type="text">
+    <form id="signup">
+        <!-- x-www-urlencoded -->
+        <input name="name" type="text">
 
-        <input type="text">
-        <input type="date" name="" id="">
+        <input name="username" type="text">
+        <input type="date" name="birthday">
 
-        <input type="email" name="" id="">
-        <input type="password" name="" id="">
-        <input type="password" name="" id="">
-
+        <input type="email" name="email">
+        <input type="password" name="password">
+        <input type="password" name="confirmPassword">
+        <button>Registrarme</button>
     </form>
+    <p id="message"></p>
+
+    <script>
+        const signup = document.getElementById("signup")
+        const message = document.getElementById("message")
+        signup.onsubmit = function(event){
+            event.preventDefault()
+
+            fetch("/registro",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    email:signup.email.value,
+                    username:signup.username.value,
+                    name:signup.name.value,
+                    birthday:signup.birthday.value,
+                    password:signup.password.value
+                })
+            }).then(function(result){
+                console.log(result)
+                return result.json() // Devuelve un promesa
+            })
+            .then(function(data){
+                
+                if(data.error){
+                    message.innerText = data.message
+                }else{
+                    console.log(data.user)
+                    message.innerText = ""
+                    // Guardar data en el navegador
+                    // Redirección
+                }
+
+                
+            })
+            .catch(function(error){
+                console.log(error)
+            })
+        }
+    </script>
 </body>
 </html>
