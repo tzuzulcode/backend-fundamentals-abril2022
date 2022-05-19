@@ -40,5 +40,17 @@ router.post("/registro",async function(req,res){
     return res.json(validation)
 })
 
+router.get("/inicio_sesion",async function(req,res){
+    return view("inicio_sesion.html",res)
+})
+router.post("/inicio_sesion",async function(req,res){
+    const user = new User(req.body)
+
+    const result = await user.login()
+
+    return res.json(result)
+
+})
+
 
 module.exports = router // Exportando

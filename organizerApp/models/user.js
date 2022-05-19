@@ -44,7 +44,10 @@ class User{
                 [Object.keys(data),Object.values(data)]
             )
 
+            console.log(result)
+
             delete data.password
+            data.id = result.insertId
 
             return {
                 user:data,
@@ -57,6 +60,33 @@ class User{
         }
     }
 
+    async login(){
+        const result = await database.query("SELECT * FROM users WHERE email = ?",[this.email])
+        const user = result[0]
+        if(user){
+            if(await this.compare(this.password,user.password)){
+                delete user.password
+                return {
+                    success:true,
+                    user,
+                    message:"Usuario correcto"
+                }
+
+            }else{
+                return {
+                    success:false,
+                    message:"Credenciales incorrectas"
+                }
+            }
+
+        }
+
+        return {
+            success:false,
+            message:"Usuario no registrado"
+        }
+    }
+
 
     async encrypt(string){
         const salt = await bcrypt.genSalt(10)
@@ -64,6 +94,11 @@ class User{
 
         return hash
     }
+
+    async compare(string,hash){
+        return await bcrypt.compare(string,hash)
+    }
+    
 }
 
 module.exports = User

@@ -11,12 +11,33 @@
 </head>
 <body>
     <h1>Hola</h1>
+    <p id="user"></p>
+    <button id="logout">Cerrar sesión</button>
     <a href="/registro">Registrarse</a>
+    <a href="/inicio_sesion">Iniciar sesión</a>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, cupiditate?</p>
     <img src="https://images.unsplash.com/photo-1651052003819-ec2abaa445f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" alt="Imagen">
     <img src="/static/foto.jpeg" alt="Foto de prueba">
 
     <script>
+        const user = document.getElementById("user")
+        const logoutBtn = document.getElementById("logout")
+        const id = localStorage.getItem("id")
+
+
+        if(id){
+            const name = localStorage.getItem("name")
+
+            user.innerText = name
+
+            logoutBtn.onclick = function(){
+                localStorage.clear()
+                location.href = "/"
+            }
+        }else{
+            logoutBtn.style.display = "none"
+        }
+
         // Asíncrona
         // Async
         fetch("/users") // Inicio
@@ -32,17 +53,17 @@
 
 
         // Gestión de promesas con Async/await
-        async function request(){
-            try{
-                const resultado = await fetch("/users")
-                const data = await resultado.json()
-                return data
-            }catch(error){
-                console.log(error)
-            }
-        }
+        // async function request(){
+        //     try{
+        //         const resultado = await fetch("/users")
+        //         const data = await resultado.json()
+        //         return data
+        //     }catch(error){
+        //         console.log(error)
+        //     }
+        // }
 
-        request()
+        // request()
 
 
     </script>
