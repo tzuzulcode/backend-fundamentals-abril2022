@@ -1,4 +1,5 @@
 const express = require("express")
+const path = require("path")
 // PORT
 const { port } = require("./config")
 
@@ -8,6 +9,9 @@ const auth = require("./routes/auth")
 
 
 const app = express()
+
+// Usando middlewares
+app.use(express.static(path.join(__dirname,"static")))
 
 // Configurando template engine
 app.set("view engine","pug")
