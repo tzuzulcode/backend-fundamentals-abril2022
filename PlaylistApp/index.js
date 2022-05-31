@@ -17,12 +17,11 @@ app.use(express.static(path.join(__dirname,"static")))
 app.set("view engine","pug")
 app.set("views","views")
 
-
 app.use(auth)
 
 app.get("/",function(req,res){
-    return res.json({
-        hola:"mundo"
+    return res.render("home",{
+        username:"Tzuzul"
     })
 })
 
