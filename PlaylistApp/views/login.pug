@@ -3,7 +3,13 @@ extends layouts/main-layout.pug
 block title 
     title Login
 
-block content 
+block content
+    //- Content-Type: x-www-form-urlencoded
+    form(action="/login", method="post")
+        input(type="email", name="email")
+        input(type="password", name="password")
+        button Iniciar sesión
+
     h1 Hola mundo
     p(class="text-red-500") Tzuzul
     p(class="text-green-400") Otro texto

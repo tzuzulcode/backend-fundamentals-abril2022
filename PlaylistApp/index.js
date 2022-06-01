@@ -12,6 +12,9 @@ const app = express()
 
 // Usando middlewares
 app.use(express.static(path.join(__dirname,"static")))
+app.use(express.urlencoded({
+    extended:true
+}))
 
 // Configurando template engine
 app.set("view engine","pug")

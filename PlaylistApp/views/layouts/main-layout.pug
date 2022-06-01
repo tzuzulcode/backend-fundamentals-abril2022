@@ -7,5 +7,11 @@ html(lang="en")
         block title
         link(rel="stylesheet", href="/css/styles.css")
     body
-        include ../components/navbar.pug
+        //- hiddenNavbar -> true se oculta el elemente
+        //- unless hiddenNavbar 
+            include ../components/navbar.pug
+        if !hiddenNavbar
+            include ../components/navbar.pug
+        //- include ../components/navbar.pug
+        
         block content
