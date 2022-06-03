@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt")
 const User = require("../models/User")
+const {query} = require("../libs/database")
 // const userModel = new User()
 
 class AuthController{
@@ -15,6 +16,11 @@ class AuthController{
         if(success && user){
             try {
                 if(await bcrypt.compare(password,user.password)){
+                    req.session.loggedIn = true
+                    req.session.email = user.email
+                    req.session.idUser = user.id
+
+                    // res.setHeader("Set-Cookie","id:abc123")
                     return res.redirect("/")
                 }
             } catch (error) {
@@ -32,12 +38,49 @@ class AuthController{
     }
 
     static getLoginForm(req,res){
-        return res.render("login",{
-            username:"Tzuzul",
-            lista:["María","Miguel","Emilio"],
-            id:123,
-            // hiddenNavbar:true
-        })
+        return res.render("login")
+    }
+
+    static getSignUpForm(req,res){
+        return res.render("signup")
+    }
+
+    static async signUp(req,res){
+        const salt = await bcrypt.genSalt(10)
+        const password = await bcrypt.hash(req.body.password,salt)
+        const data = {
+            name:req.body.name,
+            email:req.body.email,
+            password: password,
+            birthday:req.body.birthday
+        }
+        try {
+            const result = await query(
+                "INSERT INTO users(??) VALUES(?)",
+                [Object.keys(data),Object.values(data)]
+            )
+
+            console.log(result)
+
+            req.session.loggedIn = true
+            req.session.email = data.email
+            req.session.idUser = result.insertId
+                
+
+            return res.redirect("/")
+
+        }catch(error){
+            console.log(error)
+            return res.render("signup",{
+                error:"Verifica los datos",
+                user:{
+                    name:req.body.name,
+                    email:req.body.email,
+                    password: req.body.password,
+                    birthday:req.body.birthday
+                }
+            })
+        }
     }
 }
 

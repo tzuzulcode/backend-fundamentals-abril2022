@@ -1,0 +1,16 @@
+extends layouts/main-layout.pug
+
+block title 
+    title Sign Up
+
+block content
+    //- Content-Type: x-www-form-urlencoded
+    form(action="/signup", method="post")
+        input(type="text", name="name", value=user ? user.name : null)
+        input(type="date", name="birthday", value=user ? user.birthday : null)
+        input(type="email", name="email", value=user ? user.email : null)
+        input(type="password", name="password", value=user ? user.password : null)
+        button Registrarme
+
+    if error
+        p(class="bg-red-300 text-red-900 p-3 w-max") #{error}
