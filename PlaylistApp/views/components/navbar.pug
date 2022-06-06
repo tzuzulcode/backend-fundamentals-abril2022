@@ -10,7 +10,8 @@ nav(class="bg-gray-900")
             a(href="/") Link
         li 
             a(href="/") Link 
-        li #{username}
+        if user 
+            li #{user.name}
 
 if username=="Tzuzul"
     p ADMIN

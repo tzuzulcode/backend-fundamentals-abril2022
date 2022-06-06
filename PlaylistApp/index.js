@@ -1,6 +1,9 @@
 const express = require("express")
 const session = require("express-session")
 const path = require("path")
+const addSessionToTemplate = require("./middleware/addSessionToTempalte")
+
+
 // PORT
 const { port, sessionSecret } = require("./config")
 
@@ -23,6 +26,9 @@ app.use(session({
     saveUninitialized:false
 }))
 
+app.use(addSessionToTemplate())
+
+
 
 // Configurando template engine
 app.set("view engine","pug")
@@ -32,9 +38,7 @@ app.use(auth)
 
 app.get("/",function(req,res){
     console.log(req.session)
-    return res.render("home",{
-        username:"Tzuzul"
-    })
+    return res.render("home")
 })
 
 app.listen(port,function(){

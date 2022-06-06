@@ -16,9 +16,17 @@ class AuthController{
         if(success && user){
             try {
                 if(await bcrypt.compare(password,user.password)){
-                    req.session.loggedIn = true
-                    req.session.email = user.email
-                    req.session.idUser = user.id
+                    // req.session.loggedIn = true
+                    // req.session.name = user.name
+                    // req.session.email = user.email
+                    // req.session.idUser = user.id
+
+                    req.session.user = {
+                        loggedIn : true,
+                        name : user.name,
+                        email : user.email,
+                        idUser : user.id,
+                    }
 
                     // res.setHeader("Set-Cookie","id:abc123")
                     return res.redirect("/")
@@ -62,9 +70,12 @@ class AuthController{
 
             console.log(result)
 
-            req.session.loggedIn = true
-            req.session.email = data.email
-            req.session.idUser = result.insertId
+            req.session.user = {
+                loggedIn : true,
+                name : data.name,
+                email : data.email,
+                idUser : result.insertId,
+            }
                 
 
             return res.redirect("/")
