@@ -34,7 +34,7 @@ app.use(addSessionToTemplate())
 app.set("view engine","pug")
 app.set("views","views")
 
-app.use(auth)
+app.use("/auth",auth)
 
 app.get("/",function(req,res){
     console.log(req.session)

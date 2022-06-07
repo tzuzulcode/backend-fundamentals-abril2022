@@ -5,7 +5,7 @@ block title
 
 block content
     //- Content-Type: x-www-form-urlencoded
-    form(action="/signup", method="post")
+    form(action="/auth/signup", method="post")
         input(type="text", name="name", value=user ? user.name : null)
         input(type="date", name="birthday", value=user ? user.birthday : null)
         input(type="email", name="email", value=user ? user.email : null)
