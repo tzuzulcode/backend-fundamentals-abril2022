@@ -10,8 +10,8 @@ nav(class="bg-gray-900")
             li 
                 div(class="relative group")
                     p #{user.name}
-                    div(class="absolute pt-3 hidden group-hover:block")
-                        a(href="/auth/logout" class="bg-red-300") Cerrar sesión
+                    div(class="absolute pt-3 hidden group-hover:block w-max")
+                        a(href="/auth/logout" class="bg-red-300 p-2") Cerrar sesión
         else
             li 
                 a(href="/auth/login") Login 

@@ -476,32 +476,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: relative;
 }
 
-.bottom-0 {
-  bottom: 0px;
-}
-
-.top-full {
-  top: 100%;
-}
-
-.mt-10 {
-  margin-top: 2.5rem;
-}
-
-.mt-5 {
-  margin-top: 1.25rem;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
-}
-
 .block {
   display: block;
-}
-
-.inline-block {
-  display: inline-block;
 }
 
 .flex {
@@ -516,26 +492,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-}
-
-.w-auto {
-  width: auto;
-}
-
-.w-fit {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.min-w-min {
-  min-width: -webkit-min-content;
-  min-width: -moz-min-content;
-  min-width: min-content;
-}
-
-.min-w-full {
-  min-width: 100%;
 }
 
 .gap-5 {
@@ -560,6 +516,15 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 1.25rem;
 }
 
+.p-2 {
+  padding: 0.5rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 .pt-3 {
   padding-top: 0.75rem;
 }
@@ -578,6 +543,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: block;
 }
 
-.group:hover .group-hover\:inline-block {
-  display: inline-block;
+.group:hover .group-hover\:flex {
+  display: flex;
 }
