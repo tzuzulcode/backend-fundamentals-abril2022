@@ -1,0 +1,13 @@
+extends layouts/main-layout.pug
+
+block title 
+    title Playlists
+
+block content
+    //- Content-Type: x-www-form-urlencoded
+    form(action="/playlists", method="post")
+        input(type="text", name="name", value=playlist ? playlist.name : null)
+        button Crear playlist
+
+    if error
+        p(class="bg-red-300 text-red-900 p-3 w-max") #{error}

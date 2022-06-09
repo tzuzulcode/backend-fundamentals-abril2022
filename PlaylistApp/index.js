@@ -10,6 +10,7 @@ const { port, sessionSecret } = require("./config")
 
 // Routes
 const auth = require("./routes/auth")
+const playlists = require("./routes/playlists")
 
 
 const app = express()
@@ -35,6 +36,7 @@ app.set("view engine","pug")
 app.set("views","views")
 
 app.use("/auth",auth)
+app.use("/playlists",playlists)
 
 app.get("/",function(req,res){
     console.log(req.session)
