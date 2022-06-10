@@ -1,0 +1,26 @@
+extends layouts/main-layout.pug
+
+block title 
+    title Songs
+
+block content
+    //- Content-Type: x-www-form-urlencoded
+    form(action="/songs", method="post")
+        input(type="text", name="title", value=song ? song.title : null)
+        button Crear canción
+
+    if error
+        p(class="bg-red-300 text-red-900 p-3 w-max") #{error}
+
+    section(class="bg-gray-100 shadow-md w-10/12 mx-auto")
+        each song in songs 
+            article(class="flex gap-5")
+                p #{song.title}
+                div(class="relative")
+                    button(class="addBtn") +
+                    div(class="absolute hidden left-full top-0 w-max bg-gray-800 ml-2 p-3 text-white")
+                        p Playlist 1
+                        p Playlist 2
+
+    script(src="/js/playlist.js") 
+                
