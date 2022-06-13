@@ -23,6 +23,32 @@ class Playlists{
             error:message
         })
     }
+
+    static async addSongToPlaylist(req,res){
+        const {idPlaylist,idSong} = req.body
+        // const idSong = req.body.idSong
+        // const idPlaylist = req.body.idPlaylist
+
+        const {result,message,success} = await Playlist.addSong(idPlaylist,idSong)
+        
+        return res.status(success?200:400).json({
+            result:result,
+            message:message
+        })
+    }
+    static async removeSongFromPlaylist(req,res){
+        const {idPlaylist,idSong} = req.body
+        // const idSong = req.body.idSong
+        // const idPlaylist = req.body.idPlaylist
+
+        const {result,message,success} = await Playlist.removeSong(idPlaylist,idSong)
+        
+        return res.status(success?200:400).json({
+            result:result,
+            message:message
+        })
+    }
+
 }
 
 module.exports = Playlists

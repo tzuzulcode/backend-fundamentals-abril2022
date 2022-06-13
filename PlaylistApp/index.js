@@ -21,6 +21,7 @@ app.use(express.static(path.join(__dirname,"static")))
 app.use(express.urlencoded({
     extended:true
 }))
+app.use(express.json())
 
 app.use(session({
     secret:sessionSecret,

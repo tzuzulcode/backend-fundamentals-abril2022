@@ -1,12 +1,16 @@
 const Song = require("../models/Song")
+const Playlist = require("../models/Playlist")
 
 class SongsController{
     static async getAll(req,res){
-        const {result} = await Song.getAll()
+        const {result:songs} = await Song.getAll()
+        const {result:playlists} = await Playlist.getMyPlaylists(req.session.user.idUser)
 
-        console.log(result)
+        console.log(songs)
+        console.log(playlists)
         return res.render("songs",{
-            songs:result
+            songs:songs,
+            playlists:playlists
         })
     }
     static async create(req,res){
@@ -16,7 +20,7 @@ class SongsController{
             return res.redirect("/songs")
         }
 
-        return res.render("playlists",{
+        return res.render("songs",{
             song:req.body,
             error:message
         })

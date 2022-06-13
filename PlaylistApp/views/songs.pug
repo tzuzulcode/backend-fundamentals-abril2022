@@ -19,8 +19,8 @@ block content
                 div(class="relative")
                     button(class="addBtn") +
                     div(class="absolute hidden left-full top-0 w-max bg-gray-800 ml-2 p-3 text-white")
-                        p Playlist 1
-                        p Playlist 2
+                        each playlist in playlists
+                            p(onclick=`addToPlaylist(${playlist.id},${song.id})`) #{playlist.name}
 
     script(src="/js/playlist.js") 
                 

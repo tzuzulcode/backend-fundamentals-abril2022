@@ -15,5 +15,7 @@ router.get("/",PlaylistsController.getMyPlaylists)
 
 router.post("/",PlaylistsController.create)
 
+router.post("/addSong",PlaylistsController.addSongToPlaylist)
+
 
 module.exports = router
