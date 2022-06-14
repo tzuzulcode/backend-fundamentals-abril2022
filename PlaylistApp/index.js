@@ -28,6 +28,7 @@ app.use(session({
     resave:false,
     saveUninitialized:false
 }))
+// Redis
 
 app.use(addSessionToTemplate())
 
