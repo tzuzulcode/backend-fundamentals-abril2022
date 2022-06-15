@@ -1,1 +1,12 @@
 <h1>Express handlebars</h1>
+{{!-- Abrir condicion --}}
+{{#if (toBoolean user.logged) }}
+    <p>{{user.name}}</p>
+    {{!-- Cerrar condicion --}}
+{{/if}}
+
+<ul>
+    {{#each programmingLanguages}}
+        <li>{{this}}</li>
+    {{/each}}
+</ul>
