@@ -1,0 +1,25 @@
+{
+  "name": "foodapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "prisma": "^3.15.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.1.3"
+  }
+}
