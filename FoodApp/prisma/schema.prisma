@@ -6,6 +6,17 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+// Por defecto, todos los campos tienen la restricción NOT NULL
+
+model User {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(45)
+  email String @unique @db.VarChar(45)
+  password String @db.VarChar(61)
+  birthday DateTime @db.Date
+  active Boolean @default(true)
 }
