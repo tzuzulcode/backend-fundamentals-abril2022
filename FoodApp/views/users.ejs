@@ -1,0 +1,17 @@
+<p>Hola <%=name%></p>
+
+<% if (users.length===0) { %>
+    <p>No hay usuarios registrados</p>
+<% } %>
+
+<ul>
+    <% for( let i = 0; i < users.length; i++ ) { %>
+        <li><%= users[i] %>  </li>
+    <% } %>
+
+    
+
+    <% users.forEach(user => { %>
+        <li><%= user %>  </li>
+    <% }) %>
+</ul>
