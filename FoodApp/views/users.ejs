@@ -6,12 +6,22 @@
 
 <ul>
     <% for( let i = 0; i < users.length; i++ ) { %>
-        <li><%= users[i] %>  </li>
+        <li>
+            <div>
+                <p><%= users[i].name %></p>
+                <p><%= users[i].email %></p>
+            </div>
+        </li>
     <% } %>
 
     
 
     <% users.forEach(user => { %>
-        <li><%= user %>  </li>
+        <li>
+            <div>
+                <p><%= user.name %></p>
+                <p><%= user.email %></p>
+            </div>
+        </li>
     <% }) %>
 </ul>
