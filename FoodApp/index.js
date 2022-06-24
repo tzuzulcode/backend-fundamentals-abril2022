@@ -7,6 +7,7 @@ const session = require("express-session")
 // Routes
 const users = require("./routes/users")
 const auth = require("./routes/auth")
+const addSessionToTemplate = require("./middleware/addSessionToTempalte")
 
 const app = express()
 
@@ -27,15 +28,14 @@ app.use(session({
     }
 }))
 app.use(expressLayouts)
+app.use(addSessionToTemplate())
 
 app.use(users)
 app.use(auth)
 
 app.get("/",(req,res)=>{
     console.log(req.session)
-    return res.json({
-        hola:"Mundo"
-    })
+    return res.render("home")
 })
 
 app.listen(port,()=>{

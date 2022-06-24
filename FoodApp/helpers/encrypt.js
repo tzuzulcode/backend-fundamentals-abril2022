@@ -7,6 +7,15 @@ async function encrypt(string) {
     return hash
 }
 
+async function compare(string,hash){
+    try {
+        return await bcrypt.compare(string,hash)
+    } catch (error) {
+        return false
+    }
+}
+
 module.exports = {
-    encrypt
+    encrypt,
+    compare
 }
