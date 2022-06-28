@@ -5,23 +5,25 @@
 <% } %>
 
 <ul>
-    <% for( let i = 0; i < users.length; i++ ) { %>
+    <!-- <% for( let i = 0; i < users.length; i++ ) { %>
         <li>
             <div>
                 <p><%= users[i].name %></p>
                 <p><%= users[i].email %></p>
             </div>
         </li>
-    <% } %>
+    <% } %> -->
 
     
 
     <% users.forEach(user => { %>
         <li>
-            <div>
-                <p><%= user.name %></p>
-                <p><%= user.email %></p>
-            </div>
+            <a href="/users/<%= user.id %>">
+                <div>
+                    <p><%= user.name %></p>
+                    <p><%= user.email %></p>
+                </div>
+            </a>
         </li>
     <% }) %>
 </ul>

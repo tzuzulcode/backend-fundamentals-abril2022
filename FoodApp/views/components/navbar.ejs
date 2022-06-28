@@ -1,8 +1,11 @@
 <nav>
     <ul>
-        <li><a href="/">
-            Home
-        </a></li>
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/users">Users</a>
+        </li>
         <li><a href="/login">
             Login
         </a></li>
@@ -10,9 +13,12 @@
             Sign up
         </a></li>
 
-        <% if (user.loggedIn) { %>
+        <% if (locals.user && locals.user.loggedIn) { %>
             <li>
                 <%= user.name %> 
+            </li>
+            <li>
+                <a href="/logout">Log out</a>
             </li>
         <% } %>
     </ul>

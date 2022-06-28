@@ -1,0 +1,8 @@
+<h2><%= user.name %> </h2>
+<p><%= user.email %> </p>
+
+<form action="/users/<%= user.id %>" method="post">
+    <label for="active">Active:</label> <input type="checkbox" checked="<%= user.active %>" name="active" id="active">
+    <label for="birthday">Birthday:</label> <input type="date" value="<%= `${new Date(user.birthday).getFullYear()}-${new Date(user.birthday).getMonth()}-${new Date(user.birthday).getDate()}` %>" name="birthday" id="birthday">
+    <button>Update</button>
+</form>

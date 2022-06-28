@@ -38,6 +38,13 @@ app.get("/",(req,res)=>{
     return res.render("home")
 })
 
+// Pagina 404
+app.get("*",(req,res)=>{
+    return res.json({
+        message:"Not found"
+    })
+})
+
 app.listen(port,()=>{
     console.log("Listening on: http://localhost:"+port)
 })
