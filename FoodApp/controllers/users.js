@@ -1,3 +1,4 @@
+const { parseDate } = require("../helpers/date")
 const client = require("../libs/db")
 
 class UsersController{
@@ -6,12 +7,15 @@ class UsersController{
         //     return res.redirect("/")
         // }
         const users = await client.user.findMany()
-        console.log(users)
+        const error = (await req.consumeFlash('error'))[0];
+        const success = (await req.consumeFlash('success'))[0];
+
         // const users = ["Juanito","Miguel","María","Emilio"]
 
         return res.render("users",{
             users,
-            name:"Tzuzul"
+            error,
+            success
         })
     }
 
@@ -23,7 +27,7 @@ class UsersController{
             }
         })
 
-        console.log(user)
+        user.birthday = parseDate(user.birthday)
 
         return res.render("user_details",{
             user
@@ -32,6 +36,12 @@ class UsersController{
 
     static async updateOne(req,res){
         const id = req.params.id
+        req.body.active = req.body.active==="on"
+    
+        const date = new Date(req.body.birthday)
+        date.setDate(date.getDate()+1)
+        req.body.birthday = date
+
         try {
             const user = await client.user.update({
                 data:req.body,
@@ -39,17 +49,13 @@ class UsersController{
                     id:parseInt(id)
                 }
             })
-            console.log(user)
-            return res.render("users",{
-                user,
-                success:true,
-                message:"User updated successfully"
-            })
+            await req.flash('success', 'User updated successfully');
+            return res.redirect("/users")
         } catch (error) {
-            return res.render("users",{
-                error:true,
-                message:"User updated successfully"
-            })
+            console.log(error)
+            // EN las redirecciones no podemos añadir datos extra
+            await req.flash('error', 'Failed to update user');
+            return res.redirect("/users")
         }
     }
 }

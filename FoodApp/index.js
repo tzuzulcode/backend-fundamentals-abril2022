@@ -3,6 +3,7 @@ const { port, sessionSecret } = require("./config")
 const path = require("path")
 const expressLayouts = require("express-ejs-layouts")
 const session = require("express-session")
+const { flash } = require('express-flash-message');
 
 // Routes
 const users = require("./routes/users")
@@ -27,6 +28,7 @@ app.use(session({
         maxAge:3600000
     }
 }))
+app.use(flash({ sessionKeyName: 'flashMessage' }));
 app.use(expressLayouts)
 app.use(addSessionToTemplate())
 
