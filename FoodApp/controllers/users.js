@@ -58,6 +58,23 @@ class UsersController{
             return res.redirect("/users")
         }
     }
+
+    static async deleteOne(req,res){
+        const id = req.params.id
+        try {
+            const user = await client.user.delete({
+                where:{
+                    id:parseInt(id)
+                }
+            })
+            await req.flash('success', 'User deleted successfully');
+        } catch (error) {
+            console.log(error)
+            await req.flash('error', 'Failed to delete user');
+        }finally{
+            return res.redirect("/users")
+        }
+    }
 }
 
 module.exports = UsersController

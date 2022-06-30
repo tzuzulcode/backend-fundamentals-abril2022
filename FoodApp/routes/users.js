@@ -9,6 +9,7 @@ const router = Router()
 router.get("/users",UsersController.getAll)
 router.get("/users/:id",UsersController.getOne)
 router.post("/users/:id",UsersController.updateOne)
+router.post("/users/delete/:id",UsersController.deleteOne)
 
 
 module.exports = router

@@ -20,8 +20,19 @@
                 <div>
                     <p><%= user.name %></p>
                     <p><%= user.email %></p>
+                    <form action="/users/delete/<%= user.id %>" method="post">
+                        <button>Eliminar</button>
+                    </form>
                 </div>
             </a>
         </li>
     <% }) %>
 </ul>
+
+<!-- <script>
+    function deleteUser(id){
+        fetch("/users/"+id,{
+            method:"DELETE"
+        }).then()
+    }
+</script> -->

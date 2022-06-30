@@ -20,3 +20,29 @@ model User {
   birthday DateTime @db.Date
   active Boolean @default(true)
 }
+
+model Food{
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(45)
+  price Float
+  description String
+  image String
+  categories FoodCategories[] 
+}
+
+model Category{
+  id Int @id @default(autoincrement())
+  name String
+  food FoodCategories[]
+}
+
+model FoodCategories {
+  // fields: Campos de esta tabla
+  // references: Crea una referencia a un campo de otra tabla
+  food Food @relation(fields: [foodID], references: [id], onDelete: Cascade)
+  foodID Int
+  category Category @relation(fields:[categoryID],references: [id], onDelete: Cascade)
+  categoryID Int
+
+  @@id([foodID,categoryID])
+}
