@@ -1,0 +1,20 @@
+<h2>Add food</h2>
+<form action="/admin/addFood" method="post">
+    <input type="text" name="name"  placeholder="Name...">
+    <input type="number" name="price" placeholder="Price...">
+    <input type="text" name="description" placeholder="Description...">
+    <input type="text" name="image" placeholder="Image...">
+    <select name="categories" multiple>
+        <option value="no-category" selected>No category</option>
+        <% categories.forEach(category => { %>
+            <option value="<%= category.id %> "><%= category.name %> </option>
+        <% }) %>
+    </select>
+    <button>Add</button>
+</form>
+
+<h2>Add category</h2>
+<form action="/admin/addCategory" method="post">
+    <input type="text" name="name" placeholder="Category...">
+    <button>Add</button>
+</form>

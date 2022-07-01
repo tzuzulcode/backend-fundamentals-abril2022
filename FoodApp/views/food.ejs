@@ -1,0 +1,11 @@
+<h2>Food</h2>
+<section>
+    <% food.forEach(dish => { %>
+        <article>
+            <h3><%= dish.name %> </h3>
+            <p><%= dish.price %> </p>
+            <p><%= dish.description %> </p>
+            <img src="<%= dish.image %>" alt="">
+        </article>
+    <% }) %>
+</section>

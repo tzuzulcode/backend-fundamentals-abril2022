@@ -27,7 +27,7 @@ model Food{
   price Float
   description String
   image String
-  categories FoodCategories[] 
+  categories FoodCategories[]
 }
 
 model Category{
