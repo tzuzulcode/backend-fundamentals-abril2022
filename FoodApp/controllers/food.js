@@ -2,8 +2,16 @@ const client = require("../libs/db")
 
 class FoodController{
     static async getAll(req,res){
-        const food = await client.food.findMany()
-        console.log(food)
+        const food = await client.food.findMany({
+            include:{
+                categories:{
+                    include:{
+                        category:true
+                    }
+                }
+            }
+        })
+        console.log(food[3].categories)
         const error = (await req.consumeFlash('error'))[0];
         const success = (await req.consumeFlash('success'))[0];
         return res.render("food",{
@@ -37,13 +45,32 @@ class FoodController{
             if (!noCategory){
                 const categoriesNumbers = categories.map(categoryID=>({categoryID:parseInt(categoryID)}))
                 data.categories = {
-                    connect:categoriesNumbers
+                    create:categoriesNumbers
                 }
-                console.log(categoriesNumbers)
             }
             const food = await client.food.create({
+                // data:{
+                //     categories:{
+                //         create:[
+                //             {
+                //                 category:{
+                //                     connect:1
+                //                 }
+                //             },
+                //             {
+                //                 categoryID:2
+                //             },
+                //             {
+                //                 categoryID:3
+                //             }
+                //         ]
+                //     }
+                // }
                 data
             })
+
+
+
             console.log(food)
             await req.flash('success', 'Food added successfully');
             return res.redirect("/food")

@@ -3,6 +3,18 @@
     <% food.forEach(dish => { %>
         <article>
             <h3><%= dish.name %> </h3>
+            <div>
+                <% if (dish.categories.length===0) { %>
+                    <p>No categories</p>
+                <% } else { %>
+                    <ul>
+                        <% dish.categories.forEach(({category}) => { %>
+                            <li><%= category.name %> </li>
+                        <% }) %>
+                    </ul>
+                <% } %>
+
+            </div>
             <p><%= dish.price %> </p>
             <p><%= dish.description %> </p>
             <img src="<%= dish.image %>" alt="">
