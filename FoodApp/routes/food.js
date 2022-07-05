@@ -1,12 +1,18 @@
 const {Router} = require("express")
 const FoodController = require("../controllers/food")
+const authValidation = require("../middleware/authValidation")
+
 
 const router = Router()
+router.use(authValidation({
+    requiredRole:"ADMIN",
+    excent:["/"]
+}))
 
-router.get("/food",FoodController.getAll)
-router.get("/admin/addFood",FoodController.getAddForm)
-router.post("/admin/addFood",FoodController.add)
-router.post("/admin/addCategory",FoodController.addCategory)
+router.get("/",FoodController.getAll)
+router.get("/addFood",FoodController.getAddForm)
+router.post("/addFood",FoodController.add)
+router.post("/addCategory",FoodController.addCategory)
 
 
 

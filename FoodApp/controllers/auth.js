@@ -4,6 +4,7 @@ const {encrypt,compare} = require("../helpers/encrypt")
 class AuthController{
 
     static getSignUpForm(req,res){
+        console.log(req.path)
         return res.render("signup")
     }
 
@@ -17,7 +18,8 @@ class AuthController{
                 select:{
                     id:true,
                     name:true,
-                    email:true
+                    email:true,
+                    role:true
                 },
                 data:{
                     name,

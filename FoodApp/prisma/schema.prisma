@@ -18,7 +18,13 @@ model User {
   email String @unique @db.VarChar(45)
   password String @db.VarChar(61)
   birthday DateTime @db.Date
+  role Role @default(NORMAL)
   active Boolean @default(true)
+}
+
+enum Role{
+  NORMAL
+  ADMIN
 }
 
 model Food{

@@ -50,12 +50,12 @@ class UsersController{
                 }
             })
             await req.flash('success', 'User updated successfully');
-            return res.redirect("/users")
+            return res.redirect("/admin/users")
         } catch (error) {
             console.log(error)
             // EN las redirecciones no podemos añadir datos extra
             await req.flash('error', 'Failed to update user');
-            return res.redirect("/users")
+            return res.redirect("/admin/users")
         }
     }
 
@@ -72,7 +72,7 @@ class UsersController{
             console.log(error)
             await req.flash('error', 'Failed to delete user');
         }finally{
-            return res.redirect("/users")
+            return res.redirect("/admin/users")
         }
     }
 }

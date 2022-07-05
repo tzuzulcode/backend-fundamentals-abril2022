@@ -35,20 +35,22 @@ app.use(flash({ sessionKeyName: 'flashMessage' }));
 app.use(expressLayouts)
 app.use(addSessionToTemplate())
 
-app.use(users)
-app.use(auth)
-app.use(food)
+app.use("/admin/users",users)
+app.use("/auth",auth)
+app.use("/food",food)
 
 app.get("/",(req,res)=>{
     console.log(req.session)
     return res.render("home")
 })
 
+app.get("/not_allowed",(req,res)=>{
+    return res.render("not_allowed")
+})
+
 // Pagina 404
 app.get("*",(req,res)=>{
-    return res.json({
-        message:"Not found"
-    })
+    return res.render("not_found")
 })
 
 app.listen(port,()=>{
