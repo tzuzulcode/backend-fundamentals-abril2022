@@ -1,0 +1,23 @@
+<% food.categories = food.categories.map(item=>{
+    return item.categoryID
+}) %> 
+<h2>Add food</h2>
+<form action="/food/edit/<%= food.id %> " method="post">
+    <input type="text" name="name"  placeholder="Name..." value="<%= food.name %> ">
+    <input type="number" name="price" placeholder="Price..."  value="<%= food.price %>">
+    <input type="text" name="description" placeholder="Description..."  value="<%= food.description %>">
+    <input type="text" name="image" placeholder="Image..."  value="<%= food.image %>">
+    <select name="categories" multiple>
+        <option value="no-category" <%= food.categories.length===0 ? "selected" : "" %> >No category</option>
+        <% categories.forEach(category => { %>
+            <option value="<%= category.id %>" <%= food.categories.includes(category.id) ? "selected" : "" %> ><%= category.name %> </option>
+        <% }) %>
+    </select>
+    <button>Edit</button>
+</form>
+
+<h2>Add category</h2>
+<form action="/food/addCategory" method="post">
+    <input type="text" name="name" placeholder="Category...">
+    <button>Add</button>
+</form>

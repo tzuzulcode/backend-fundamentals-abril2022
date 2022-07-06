@@ -18,6 +18,10 @@
             <p><%= dish.price %> </p>
             <p><%= dish.description %> </p>
             <img src="<%= dish.image %>" alt="">
+            <% if (locals.user && locals.user.loggedIn && user.role==="ADMIN") { %>
+                <a href="/food/edit/<%= dish.id %> ">Editar</a>
+                <a href="/food/delete/<%= dish.id %> ">Eliminar</a>
+            <% } %>
         </article>
     <% }) %>
 </section>
