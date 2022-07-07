@@ -20,6 +20,21 @@ model User {
   birthday DateTime @db.Date
   role Role @default(NORMAL)
   active Boolean @default(true)
+  activeOrder Int?
+  orders Order[]
+  address Address?
+}
+
+model Address{
+  id Int @id @default(autoincrement())
+  country String
+  state String
+  city String
+  street String
+  number Int
+  zipCode Int
+  user User @relation(fields: [userID],references: [id], onDelete: Cascade)
+  userID Int @unique
 }
 
 enum Role{
@@ -34,6 +49,7 @@ model Food{
   description String
   image String
   categories FoodCategories[]
+  orders FoodOrder[]
 }
 
 model Category{
@@ -51,4 +67,20 @@ model FoodCategories {
   categoryID Int
 
   @@id([foodID,categoryID])
+}
+
+model Order{
+  id Int @id @default(autoincrement())
+  completed Boolean @default(false)
+  user User @relation(fields: [userID], references: [id], onDelete: Cascade)
+  userID Int
+  food FoodOrder[]
+}
+
+model FoodOrder{
+  food Food @relation(fields: [foodID],references: [id], onDelete: Cascade)
+  foodID Int
+  order Order @relation(fields: [orderID], references: [id], onDelete: Cascade)
+  orderID Int
+  @@id([foodID,orderID])
 }

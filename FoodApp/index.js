@@ -9,6 +9,7 @@ const { flash } = require('express-flash-message');
 const users = require("./routes/users")
 const auth = require("./routes/auth")
 const food = require("./routes/food")
+const orders = require("./routes/orders")
 
 
 const addSessionToTemplate = require("./middleware/addSessionToTempalte")
@@ -38,6 +39,7 @@ app.use(addSessionToTemplate())
 app.use("/admin/users",users)
 app.use("/auth",auth)
 app.use("/food",food)
+app.use("/orders",orders)
 
 app.get("/",(req,res)=>{
     console.log(req.session)

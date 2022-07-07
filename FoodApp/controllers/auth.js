@@ -4,7 +4,6 @@ const {encrypt,compare} = require("../helpers/encrypt")
 class AuthController{
 
     static getSignUpForm(req,res){
-        console.log(req.path)
         return res.render("signup")
     }
 
@@ -28,7 +27,6 @@ class AuthController{
                     password: await encrypt(password)
                 }
             })
-            console.log(user)
 
             req.session.user = {
                 loggedIn:true,
@@ -52,8 +50,6 @@ class AuthController{
                 email:email
             }
         })
-
-        console.log(user)
 
         if(user && await compare(password,user.password)){
             delete user.password

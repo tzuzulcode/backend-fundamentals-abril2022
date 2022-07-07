@@ -11,7 +11,6 @@ class FoodController{
                 }
             }
         })
-        console.log(food[3].categories)
         const error = (await req.consumeFlash('error'))[0];
         const success = (await req.consumeFlash('success'))[0];
         return res.render("food",{
@@ -117,8 +116,6 @@ class FoodController{
                 }
             })
 
-            console.log(food)
-
             const categories = await client.category.findMany()
             const error = (await req.consumeFlash('error'))[0];
             const success = (await req.consumeFlash('success'))[0];
@@ -139,7 +136,6 @@ class FoodController{
     static async edit(req,res){
         try {
             const id = parseInt(req.params.id)
-            console.log(req.body)
             const {name,price,description,image,categories} = req.body
             await client.foodCategories.deleteMany({
                 where:{
@@ -182,15 +178,29 @@ class FoodController{
                     categories:true
                 }
             })
-            console.log("Food edited",food)
-
-
-            return res.redirect("/food")
+            await req.flash('success', 'Food edited successfully');
         } catch (error) {
-            console.log(error)
-            return res.json({message:"An error ocurred"})
+            await req.flash('error', 'An error ocurred');
+        }finally{
+            return res.redirect("/food")
         }
 
+    }
+
+    static async delete(req,res){
+        try {
+            const id = parseInt(req.params.id)
+            const food = await client.food.delete({
+                where:{
+                    id
+                }
+            })
+            await req.flash('success', 'Food deleted successfully');
+        } catch (error) {
+            await req.flash('error', 'An error ocurred');
+        }finally{
+            return res.redirect("/food")
+        }
     }
 }
 
