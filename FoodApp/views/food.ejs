@@ -22,6 +22,9 @@
                 <a href="/food/edit/<%= dish.id %> ">Editar</a>
                 <a href="/food/delete/<%= dish.id %> ">Eliminar</a>
             <% } %>
+            <% if (locals.user && locals.user.loggedIn && user.role==="NORMAL") { %>
+                <a href="/orders/add/<%= dish.id %> ">Agregar a la orden</a>
+            <% } %>
         </article>
     <% }) %>
 </section>

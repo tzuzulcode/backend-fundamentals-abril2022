@@ -16,11 +16,11 @@
 
     <% users.forEach(user => { %>
         <li>
-            <a href="/users/<%= user.id %>">
+            <a href="/admin/users/<%= user.id %>">
                 <div>
                     <p><%= user.name %></p>
                     <p><%= user.email %></p>
-                    <form action="/users/delete/<%= user.id %>" method="post">
+                    <form action="/admin/users/delete/<%= user.id %>" method="post">
                         <button>Eliminar</button>
                     </form>
                 </div>
