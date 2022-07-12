@@ -32,6 +32,7 @@ app.use(session({
         maxAge:3600000
     }
 }))
+
 app.use(flash({ sessionKeyName: 'flashMessage' }));
 app.use(expressLayouts)
 app.use(addSessionToTemplate())
